@@ -8,44 +8,44 @@
 #include "Arduino.h"
 #include <LiquidCrystal.h>
 
-void LCDHandler::init(int rows, int columns) {
-  //_lcd = LiquidCrystal(rs, enable, d4, d5, d6, d7);
-  _lcd->begin(columns, rows);
-  _lcd->print("Ask me and then");
-  _lcd->setCursor(0, 1);
-  _lcd->print("shake :)");
+void LCDHandler::init(String welcomeMessage1, String welcomeMessage2) {
+  _lcd->clear();
+  _lcd->begin(_columns, _rows);
+  print(welcomeMessage2, 1);
+  print(welcomeMessage1, 0);
+  
 }
 
-void LCDHandler::ask() {
-  int reply = random(8);
-  _lcd->clear();
-  _lcd->setCursor(0, 0);
-  _lcd->print("The ball says");
-  _lcd->setCursor(0, 1);
-  switch(reply) {
-    case 0:
-      _lcd->print("Yes");
-      break;
-    case 1:
-      _lcd->print("Most likely");
-      break;
-    case 2:
-      _lcd->print("Ask again");
-      break;
-    case 3:
-      _lcd->print("Certainly");
-      break;
-    case 4:
-      _lcd->print("Outlook good");
-      break;
-    case 5:
-      _lcd->print("Unsure");
-      break;
-    case 6:
-      _lcd->print("Doubtful");
-      break;
-    case 7:
-      _lcd->print("No");
-      break;
+void LCDHandler::print(String message, int row) {
+  _lcd->setCursor(0, row);
+  _lcd->print(message);
+  int diffence = message.length() - _columns;
+  if (diffence > 0) {
+    printAndScroll(message, row);
   }
+}
+
+void LCDHandler::printAndScroll(String message, int row) {
+  for (int i = 0; i < 4; i++) {
+    for (int positionCounter = 0; positionCounter < (message.length() - _columns); positionCounter++) {
+      if (i % 2 == 0) {
+        _lcd->scrollDisplayLeft();  
+      } else {
+        _lcd->scrollDisplayRight();    
+      }
+      delay(_timeDelay);
+    }  
+  }
+}
+
+int LCDHandler::getTimeDelay() {
+  return _timeDelay;
+}
+
+void LCDHandler::setTimeDelay(int timeDelay) {
+  _timeDelay = timeDelay;
+}
+
+void LCDHandler::clear() {
+  _lcd->clear();
 }

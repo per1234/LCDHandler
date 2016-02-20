@@ -13,21 +13,21 @@
 class LCDHandler
 {
     public:
-        LCDHandler(LiquidCrystal *lcd) {
-          _lcd = lcd;
-        }
+        LCDHandler(LiquidCrystal *lcd, int timeDelay = 500, int rows = 2, int columns = 16) 
+          :_lcd(lcd), _rows(rows), _columns(columns), _timeDelay(timeDelay) {}
 
-        /*LCDHandler(int rs, int enable, int d4, int d5, int d6, int d7, int rows = 2, int columns = 16) {
-          init(rs, enable, d4, d5, d6, d7, rows, columns);
-          _lcd.print("Ask me and then");
-          _lcd.setCursor(0, 1);
-          _lcd.print("shake :)");
-        }*/
-
-        void ask();
-        void init(int rows = 2, int columns = 16);
+        void  init(String welcomeMessage1 = "Ready", String welcomeMessage2 = "");
+        void  print(String message, int row = 0);
+        int   getTimeDelay();
+        void  setTimeDelay(int timeDelay);
+        void  clear();
     private:
 
     	LiquidCrystal *_lcd;
+      int _columns;
+      int _rows;
+      int _timeDelay;
+
+      void  printAndScroll(String message, int row = 0);
 };
 #endif
