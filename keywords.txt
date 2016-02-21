@@ -1,6 +1,6 @@
-LDCHandler		KEYWORD1
-init			KEYWORD2
-print			KEYWORD2
+LCDHandler	KEYWORD1
+init	KEYWORD2
+print	KEYWORD2
 getTimeDelay	KEYWORD2
 setTimeDelay	KEYWORD2
-clear			KEYWORD2
+clear	KEYWORD2
