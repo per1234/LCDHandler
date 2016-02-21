@@ -42,3 +42,9 @@ Set up the delay used by autoscroll
 ### void  clear()
 
 Cleans the LCD screen
+
+### Example
+
+The basic example uses a basic circuit described in Arduino basic skecthes, however potentiometer is not used to handle screen brightness. You can put V0 directly to GND.
+
+![dsc_0026](https://cloud.githubusercontent.com/assets/7602475/13202263/ace65e5a-d894-11e5-9a60-2ce5055e684c.JPG)
