@@ -1,0 +1,11 @@
+{
+  "name": "LCDHandler",
+  "keywords": "LCD, arduino, LiquidCrystal",
+  "description": "LiquidCrystal Handler library for Arduino",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/jomaora/LCDHandler.git"
+  },
+  "frameworks": "arduino"
+}
