@@ -25,6 +25,22 @@ void LCDHandler::print(String message, int row) {
   }
 }
 
+void LCDHandler::print(const char* message, int row) {
+  _lcd->setCursor(0, row);
+  Serial.print("Inside print");
+  Serial.println(message);
+  _lcd->print(message);
+  int diffence = strlen(message) - _columns;
+  if (diffence > 0) {
+    printAndScroll(message, row);
+  }
+}
+
+void LCDHandler::print(int message, int row) {
+  _lcd->setCursor(0, row);
+  _lcd->print(message);
+}
+
 void LCDHandler::printAndScroll(String message, int row) {
   for (int i = 0; i < 4; i++) {
     for (int positionCounter = 0; positionCounter < (message.length() - _columns); positionCounter++) {
@@ -46,6 +62,9 @@ void LCDHandler::setTimeDelay(int timeDelay) {
   _timeDelay = timeDelay;
 }
 
-void LCDHandler::clear() {
+void LCDHandler::clear(int timeDelay) {
+  if (timeDelay > 0) {
+    delay(timeDelay);
+  }
   _lcd->clear();
 }

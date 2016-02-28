@@ -9,7 +9,9 @@ It wrappes print with scroll, allowing delay modifications.
 
 - LCDHandler.h: the library definition file.
 - LCDHandler.cpp: library implementation file
-- examples: a basic example printing a message that is autoscrolled.
+- examples: 
+	- InitLCD: a basic example printing a message that is autoscrolled.
+	- LCD_Ethernet: Basic exemple using a Ethernet shield to request and API and show result in LCD, using [schapiuino](https://github.com/jomaora/schapiuino) library.
 
 ## API
 
@@ -28,6 +30,8 @@ Method to be called in setup function on main. Initialises LDC with a Welcome Me
 * **welcomeMessage2**: Optional. Welcome message to show on row 1 after init.
 
 ### void  print(String message, int row = 0)
+### void  print(char* message, int row = 0)
+### void  print(int message, int row = 0)
 
 Prints a message on the LCD in the row given as parameter.
 
@@ -39,12 +43,8 @@ Returns the delay used by autoscroll
 
 Set up the delay used by autoscroll
 
-### void  clear()
+### void  clear(int delayTime)
 
-Cleans the LCD screen
+Cleans the LCD screen.
 
-### Example
-
-The basic example uses a basic circuit described in Arduino basic skecthes, however potentiometer is not used to handle screen brightness. You can put V0 directly to GND.
-
-![dsc_0026](https://cloud.githubusercontent.com/assets/7602475/13202263/ace65e5a-d894-11e5-9a60-2ce5055e684c.JPG)
+* **delayTime**: Optional. Time to wait before clear screen. Default value is 0ms.
