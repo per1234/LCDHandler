@@ -18,9 +18,11 @@ class LCDHandler
 
         void  init(String welcomeMessage1 = "Ready", String welcomeMessage2 = "");
         void  print(String message, int row = 0);
+        void  print(const char* message, int row = 0);
+        void  print(int message, int row = 0);
         int   getTimeDelay();
         void  setTimeDelay(int timeDelay);
-        void  clear();
+        void  clear(int timeDelay = 0);
     private:
 
     	LiquidCrystal *_lcd;
